@@ -34,10 +34,10 @@ form: FormGroup;
 
   getOrders() {
     return [
-      { id: 4096, name: 'NODE', value: 'true' },
-      { id: 365, name: 'Notes', value: 'true' },
-      { id: 2, name: 'File 3', value: 'false' },
-      { id: 2, name: 'File 4', value: 'false' }
+      { id: 4096, name: 'NODE', value: 'fa fa-file' },
+      { id: 365, name: 'Notes', value: 'fa fa-file' },
+      { id: 2, name: 'File 3', value: 'fa fa-file' },
+      { id: 2, name: 'File 4', value: 'fa fa-file' }
     ];
   }
  

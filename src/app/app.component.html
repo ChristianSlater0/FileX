@@ -541,11 +541,8 @@
 
             <span> <i class="fa fa-folder"></i>Name of folder</span>
         </div>
+
         <div class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-
-
-
-
             <span> <i class="fa fa-folder"></i>Name of folder</span>
         </div>
 
@@ -561,36 +558,18 @@
 
 
 
-
-        <div class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-
-
-            <span> <i class="fa fa-file"></i>Name of file</span>
-        </div>
-        <div class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-
-
-
-            <span> <i class="fa fa-file"></i>Name of file</span>
-        </div>
-        <div class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-
-
-
-            <span> <i class="fa fa-file"></i>Name of file</span>
-        </div>
-        <div class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-
-
-
-            <span> <i class="fa fa-file"></i>Name of file</span>
-        </div>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="card card-small" tabindex="0" *ngFor="let order of orders;" (click)="selection.value = 'dependency'">
+                
+                    <span> <i class="{{order.value}}"></i>{{order.name}}</span>
+              </div>
+        </form>
 
 
 
 
     </div>
-
+    
     <!-- Links -->
 
 
@@ -619,14 +598,7 @@
 <!--
   testing code
 -->
-<form [formGroup]="form" (ngSubmit)="submit()">
 
-    <label *ngFor="let order of orders">
-    &nbsp;
-    <input formControlName="orders" class="{{order.value}}" type="button" name="orders" [value]="order.name" />
-    Size: {{order.id}} <br>
-
-  </label>
 
     <br>
     <button>submit</button>
