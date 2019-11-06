@@ -39,7 +39,7 @@
   <!-- List of files/folders -->
   <div class="card-container">
 
-    <div class="card card-small" *ngFor="let filder of directory;" (click)="getDirectory()">
+    <div class="card card-small" *ngFor="let filder of directory;" (click)="doSomething(filder)">
       <span> <i class="{{filder.value}}"></i>&nbsp;{{filder.name}}</span>
     </div>
 

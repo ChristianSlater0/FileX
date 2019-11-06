@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-root',
@@ -16,31 +17,31 @@ export class AppComponent {
 form: FormGroup;
 directory = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public http: HttpClient) {
     this.form = this.formBuilder.group({
       directory: ['']
     });
-    of(this.getDirectory()).subscribe(directory => {
-      this.directory = directory;
-      this.form.controls.orders.patchValue(this.directory[0].id);
-    });
+    localStorage.setItem("path","/home")
+    this.getDirectory()
   }
 
   getDirectory() {
-    return [
-      { id: 4096, name: 'NODE', value: 'fa fa-folder' },
-      { id: 365, name: 'Notes', value: 'fa fa-folder' },
-      { id: 2, name: 'File 3', value: 'fa fa-file' },
-      { id: 2, name: 'File 4', value: 'fa fa-file' }
-    ];
+    this.http.get(`/api/ls?path=${localStorage.getItem("path")}`).subscribe((response : any[]) => {
+      // console.log(response);
+      this.directory = response});
   }
  
-  doSomething() {
-    this.directory =[
-      { id: 4096, name: 'NOsadfDE', value: 'fa fa-folder' },
-      { id: 365, name: 'Noasdftes', value: 'fa fa-folder' },
-      { id: 2, name: 'Filasdfsadfe 3', value: 'fa fa-file' }
-    ];;
+  doSomething(filder: any) {
+    console.log(filder)
+    localStorage.setItem("path", localStorage.getItem("path") + "/" + filder.name)
+    this.getDirectory();
+    // this.directory =
+    
+    // [
+    //   { id: 4096, name: 'NOsadfDE', value: 'fa fa-folder' },
+    //   { id: 365, name: 'Noasdftes', value: 'fa fa-folder' },
+    //   { id: 2, name: 'Filasdfsadfe 3', value: 'fa fa-file' }
+    // ];;
   }
  
   submit() {
