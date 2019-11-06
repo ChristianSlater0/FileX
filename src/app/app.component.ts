@@ -36,7 +36,11 @@ directory = [];
   }
  
   doSomething() {
-    this.directory = null;
+    this.directory =[
+      { id: 4096, name: 'NOsadfDE', value: 'fa fa-folder' },
+      { id: 365, name: 'Noasdftes', value: 'fa fa-folder' },
+      { id: 2, name: 'Filasdfsadfe 3', value: 'fa fa-file' }
+    ];;
   }
  
   submit() {
