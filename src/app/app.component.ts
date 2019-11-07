@@ -51,7 +51,7 @@ export class AppComponent {
   createFolder(name: string) {
     
     if (name) {
-      this.http.put(`/api/mkfile?path=${localStorage.getItem("path")}&name=${name}`, null).subscribe((obj)=>{});
+      this.http.put(`/api/mkdir?path=${localStorage.getItem("path")}&name=${name}`, null).subscribe((obj)=>{});
       this.getDirectory();
     }
   }
