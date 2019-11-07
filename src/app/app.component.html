@@ -11,15 +11,15 @@
   </div>
 
   <!-- Functionality -->
-  <input type="text" name="FirstName" placeholder="File/Folder name">
+  <input #test type="text" name="FirstName" placeholder="File/Folder name">
 
   <div class="card-container">
 
-    <div class="card card-small" (click)="createFile()">
+    <div class="card card-small" (click)="createFile(test.value)">
       <span> <i class="fa fa-file"></i>&nbsp;Create File</span>
     </div>
 
-    <div class="card card-small" (click)="createFolder()">
+    <div class="card card-small" (click)="createFolder(test.value)">
         <span> <i class="fa fa-folder"></i>&nbsp;Create folder</span>
       </div>
 
@@ -27,9 +27,9 @@
       <span>Delete</span>
     </div>
 
-    <div class="card card-small" (click)="doSomething()">
+    <!-- <div class="card card-small" (click)="doSomething()">
       <span>Template</span>
-    </div>
+    </div> -->
 
   </div>
 
@@ -39,8 +39,11 @@
   <!-- List of files/folders -->
   <div class="card-container">
 
-    <div class="card card-small" *ngFor="let filder of directory;" (click)="doSomething(filder)">
-      <span> <i class="{{filder.value}}"></i>&nbsp;{{filder.name}}</span>
+    <div class="card card-small" (click)="toParent()">
+      <span> <i class="fa fa-folder"></i>&nbsp;../</span>
+    </div>
+    <div class="card card-small" *ngFor="let filder of directory;" (click)="cd(filder)">
+      <span> <i class="fa fa-{{(filder.isDirectory)?'folder':'file'}}"></i>&nbsp;{{filder.name}}</span>
     </div>
 
   </div>
